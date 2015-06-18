@@ -1,0 +1,46 @@
+<html>
+<head>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="dist/flocking-all.js"></script>
+<script src="ellsynth.js"></script>
+<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+
+
+<script>
+$(document).ready(function(){
+
+
+
+$("#play").click(function(){
+  //alert('hello');
+  synth.play();
+
+
+
+              //synth.play();
+
+          });
+
+          $("#play").click(function () {
+    // Randomly update the frequency of the modulator.
+    var newFreq = Math.random() * 100 + 160;
+  synth.set("mySynth.freq", newFreq);
+});
+
+           $(function() {
+    $( "#slider" ).slider();
+    synth.set("mySynth.freq", slider);
+  });
+
+
+
+});
+            </script>
+</head>
+<body>
+  <input type="button" id="play"  value="play"   />
+  <input type="range" id="volume" value="volume" min="0" max="10" />
+  <div id="slider" style="width:"350px"></div>
+</body>
+</html>
