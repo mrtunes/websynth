@@ -22,16 +22,17 @@ $("#play").click(function(){
 
           });
 
-          $("#play").click(function () {
-    // Randomly update the frequency of the modulator.
-    var newFreq = Math.random() * 100 + 160;
-  synth.set("mySynth.freq", newFreq);
-});
+        //  $("#play").click(function () {
+    // Randomly update the frequency of the modulator. no real reason other than just playing around
+    //var newFreq = Math.random() * 100 + 160;
+ // synth.set("mySynth.freq", newFreq);
+//});
 
-           $(function() {
-    $( "#slider" ).slider();
-    synth.set("mySynth.freq", slider);
-  });
+
+   
+  synth.set("mySynth.freq", newFreq);
+
+ 
 
 
 
@@ -40,7 +41,13 @@ $("#play").click(function(){
 </head>
 <body>
   <input type="button" id="play"  value="play"   />
-  <input type="range" id="volume" value="volume" min="0" max="10" />
-  <div id="slider" style="width:"350px"></div>
+  <input type=range min=0 max=100 value=50 id=fader step=1 oninput="outputUpdate(value)">
+  <output for=fader id=volume>50</output>
+<script>
+function outputUpdate(vol) {
+document.querySelector('#volume').value = vol;
+}
+</script>
+
 </body>
 </html>
