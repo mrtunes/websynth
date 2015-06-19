@@ -10,6 +10,23 @@
 <script>
 $(document).ready(function(){
 
+    $("#sliderCtrl2").slider({
+                value: 75,
+                min: 0,
+                max: 2000,
+                step: 1,
+                slide: function(evt, elem) {
+                    $("#amt").text(elem.value);
+                },
+                start: function(evt, elem) {
+                    $("#amt").addClass("heavytext")
+                },
+                stop: function(evt, elem) {
+                    $("#amt").removeClass("heavytext")
+                }
+            });            
+            $("#amt").text($("#sliderCtrl2").slider("value"));
+
 
 
 $("#play").click(function(){
@@ -30,9 +47,9 @@ $("#play").click(function(){
 
 
    
-  synth.set("mySynth.freq", newFreq);
+  synth.set("mySynth.freq", value);
 
- 
+
 
 
 
@@ -41,13 +58,11 @@ $("#play").click(function(){
 </head>
 <body>
   <input type="button" id="play"  value="play"   />
-  <input type=range min=0 max=100 value=50 id=fader step=1 oninput="outputUpdate(value)">
-  <output for=fader id=volume>50</output>
-<script>
-function outputUpdate(vol) {
-document.querySelector('#volume').value = vol;
-}
-</script>
 
+
+
+
+<span id="amt"></span>
+<div id="sliderCtrl2" style="width:360"></div>
 </body>
 </html>
