@@ -5,7 +5,7 @@
 <script src="ellsynth.js"></script>
 <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
-
+<style>.heavytext{font-weight:bold;}</style>
 
 <script>
 $(document).ready(function(){
@@ -35,19 +35,20 @@ $("#play").click(function(){
 
 
 
-              //synth.play();
+      
 
           });
 
-        //  $("#play").click(function () {
-    // Randomly update the frequency of the modulator. no real reason other than just playing around
-    //var newFreq = Math.random() * 100 + 160;
- // synth.set("mySynth.freq", newFreq);
-//});
+$("#stop").click(function(){
+  //alert('hello');
+  synth.stop();     
+
+          });
+
 
 
    
-  synth.set("mySynth.freq", value);
+  synth.set("mySynth.freq", value); // is value going to respond from the sliderCtrl2 variable ?
 
 
 
@@ -58,6 +59,7 @@ $("#play").click(function(){
 </head>
 <body>
   <input type="button" id="play"  value="play"   />
+    <input type="button" id="stop"  value="stop"   />
 
 
 
