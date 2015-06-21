@@ -1,72 +1,55 @@
 <html>
-<head>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="dist/flocking-all.js"></script>
-<script src="ellsynth.js"></script>
-<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <head>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="dist/flocking-all.js"></script>
+        <script src="ellsynth.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+        <style>
+            .heavytext{
+                font-weight: bold;
+            }
 
-<style>.heavytext{font-weight:bold;}
-.test{}
-</style>
+            #sliderCtrl2 {
+                width: 360;
+            }
+        </style>
 
-<script>
-$(document).ready(function(){
+        <script>
+            $(document).ready(function(){
+                $("#sliderCtrl2").slider({
+                    value: 75,
+                    min: 0,
+                    max: 2000,
+                    step: 1,
+                    slide: function(evt, elem) {
+                        $("#amt").text(elem.value);
+                        synth.set("mySynth.freq", elem.value);
+                    },
+                    start: function(evt, elem) {
+                        $("#amt").addClass("heavytext")
+                    },
+                    stop: function(evt, elem) {
+                        $("#amt").removeClass("heavytext")
+                    }
+                });
 
-    $("#sliderCtrl2").slider({
-                value: 75,
-                min: 0,
-                max: 2000,
-                step: 1,
-                slide: function(evt, elem) {
-                    $("#amt").text(elem.value);
-                },
-                start: function(evt, elem) {
-                    $("#amt").addClass("heavytext")
-                },
-                stop: function(evt, elem) {
-                    $("#amt").removeClass("heavytext")
-                }
-            });            
-            $("#amt").text($("#sliderCtrl2").slider("value"));
+                $("#amt").text($("#sliderCtrl2").slider("value"));
 
+                $("#play").click(function(){
+                    synth.play();
+                });
 
+                $("#stop").click(function(){
+                    synth.pause();
+                });
+        });
+        </script>
+    </head>
+    <body>
+        <input type="button" id="play" value="play" />
+        <input type="button" id="stop" value="stop" />
 
-$("#play").click(function(){
-  //alert('hello');
-  synth.play();
-
-
-
-      
-
-          });
-
-$("#stop").click(function(){
-  //alert('hello');
-  synth.stop();     
-
-          });
-
-
-
-   
-  synth.set("mySynth.freq", value); // is value going to respond from the sliderCtrl2 variable ?
-
-
-
-
-
-});
-            </script>
-</head>
-<body>
-  <input type="button" id="play"  value="play"   />
-    <input type="button" id="stop"  value="stop"   />
-
-
-
-
-<span id="amt"></span>
-<div id="sliderCtrl2" style="width:360"></div>
-</body>
+        <span id="amt"></span>
+        <div id="sliderCtrl2"></div>
+    </body>
 </html>
