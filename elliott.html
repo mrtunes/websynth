@@ -26,9 +26,11 @@
                         synth.set("mySynth.freq", elem.value);
                     },
                     start: function(evt, elem) {
+                        synth.play();
                         $("#amt").addClass("heavytext")
                     },
                     stop: function(evt, elem) {
+                        synth.pause();
                         $("#amt").removeClass("heavytext")
                     }
                 });
@@ -42,12 +44,17 @@
                 $("#stop").click(function(){
                     synth.pause();
                 });
+
+                 $("#Tri").click(function(){
+                    synth.set("mySynth.ugen", flock.ugen.triOsc);
+                });
         });
         </script>
     </head>
     <body>
         <input type="button" id="play" value="play" />
         <input type="button" id="stop" value="stop" />
+         <input type="button" id="Tri" value="Tri" />
 
         <span id="amt"></span>
         <div id="sliderCtrl2"></div>
