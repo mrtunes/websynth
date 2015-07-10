@@ -7,8 +7,8 @@ var synth = flock.synth({
         mul: {  id:"mod",
                 ugen: "flock.ugen.env.simpleASR",
                 gate: 0,
-                attack: 0.25,
-                sustain: 1.0,
+                attack: 0.01,
+                sustain: .5,
                 release: 0.5
             }
         

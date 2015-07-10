@@ -1,7 +1,9 @@
 <html>
     <head>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+               <script src="dist/keyboard.js"></script>
         <script src="dist/flocking-all.js"></script>
+   
         <script src="ellsynth.js"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <style>
@@ -9,13 +11,16 @@
                 font-weight: bold;
             }
 
-            #sliderCtrl2 {
+            #sliderCtrl2, #sliderCtrl3 {
                 width: 360;
             }
         </style>
 
         <script>
             $(document).ready(function(){
+ 
+
+
                  synth.play();
                 $("#sliderCtrl2").slider({
                     value: 400,
@@ -40,29 +45,106 @@
                     }
                 });
 
-                $("#amt").text($("#sliderCtrl2").slider("value"));
+                   $("#sliderCtrl3").slider({
+                    value: 50,
+                    min: 1,
+                    max: 50,
+                    step: 1,
+                    slide: function(evt, elem) {
+                        synth.set("mySynth.mul", {
+    id: "modulator",
+    ugen: "flock.ugen.sinOsc",
+    freq: elem.value,
+    mul: 0.25
+});
+                    },
+                    start: function(evt, elem) {
 
-                $("#play").click(function(){
-                    synth.play();
-
+                     
+                        
+                    },
+                    stop: function(evt, elem) {
+                        //synth.pause();
+                          synth.set("mySynth.mul.gate", 0);
+                        $("#amt").removeClass("heavytext")
+                    }
                 });
 
-                $("#stop").click(function(){
-                    synth.pause();
-                });
 
-                 $("#Tri").click(function(){
-                    synth.set("mySynth.ugen", flock.ugen.triOsc);
-                });
-        });
+               });
+
+             
+
         </script>
+          <script> 
+
+keyboardJS.bind('a', function(e) {
+   synth.set("mySynth.mul.gate", 1);
+   synth.set("mySynth.freq", 440);
+}, function(e) {
+     synth.set("mySynth.mul.gate", 0);
+});
+
+keyboardJS.bind('s', function(e) {
+   synth.set("mySynth.mul.gate", 1);
+   synth.set("mySynth.freq", 490);
+}, function(e) {
+     synth.set("mySynth.mul.gate", 0);
+});
+
+
+keyboardJS.bind('d', function(e) {
+
+synth.set("mySynth.mul", {
+    id: "modulator",
+    ugen: "flock.ugen.sinOsc",
+    freq: 60,
+    mul: 0.25
+});
+
+  
+}, function(e) {
+     synth.set("mySynth.mul", {
+    id: "modulator",
+    ugen: "flock.ugen.sinOsc",
+    freq: 80,
+    mul: 0.25
+});
+});
+
+// this should gate everything off but doesn't 
+
+keyboardJS.bind('f', function(e) {
+   synth.set("mySynth.mul.gate", 0);
+   
+}, function(e) {
+     synth.set("mySynth.mul.gate", 0);
+});
+
+
+keyboardJS.bind('g', function(e) {
+   synth.set("mySynth.ugen", flock.ugen.saw);
+
+}, function(e) {
+     
+});
+
+
+</script>
+
+
     </head>
     <body>
+
+        <p>Press the letters a and b to trigger notes, the letter d to modulate them, and the letter f to (apparently) gate everything off
         <!--<input type="button" id="play" value="play" /> 
         <input type="button" id="stop" value="stop" />--> 
         <!-- <input type="button" id="Tri" value="Tri" /> -->
 
         <span id="amt"></span>
+        <p>frequency</p>
         <div id="sliderCtrl2"></div>
+        <p>modulator frequency</p>
+        <div id="sliderCtrl3"></div>
     </body>
 </html>
