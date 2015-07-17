@@ -1,8 +1,11 @@
 <html>
     <head>
+        
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
                <script src="dist/keyboard.js"></script>
         <script src="dist/flocking-all.js"></script>
+         <script src="dist/jquery.knob.min.js"></script>
    
         <script src="ellsynth.js"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
@@ -45,7 +48,7 @@
                     }
                 });
 
-                  /* $("#sliderCtrl3").slider({
+                   $("#sliderCtrl3").slider({
                     value: 50,
                     min: 1,
                     max: 200,
@@ -66,9 +69,51 @@
                     stop: function(evt, elem) {
                         //synth.pause();
                           synth.set("mySynth.mul.gate", 0);
-                        $("#amt").removeClass("heavytext")
+                        //$("#amt").removeClass("heavytext")
                     }
-                });*/
+                });
+
+                             $("#sliderCtrl4").slider({
+                    value: 50,
+                    min: 1,
+                    max: 200,
+                    step: 1,
+                    slide: function(evt, elem) {
+                        synth.set("mySynth.freq", {
+    id: "lfo",
+    ugen: "flock.ugen.sinOsc",
+    freq: elem.value,
+    mul: 0.25
+});
+                    },
+                    start: function(evt, elem) {
+
+                     
+                        
+                    },
+                    stop: function(evt, elem) {
+                        //synth.pause();
+                          synth.set("mySynth.mul.gate", 0);
+                        //$("#amt").removeClass("heavytext")
+                    }
+                });
+
+             $( "#Tri" ).click(function() {
+  synth.set("mySynth", {
+        id:"mySynth",
+        ugen: "flock.ugen.triOsc",
+            
+        freq: 440,
+        mul: {  id:"mod",
+                ugen: "flock.ugen.env.simpleASR",
+                gate: 0,
+                attack: 0.05,
+                sustain: .5,
+                release: 0.5
+            }
+        
+      });
+});        return false;        
 
 
                });
@@ -76,7 +121,11 @@
              
 
         </script>
+
+
+
           <script> 
+//playing around with keyboard bindings 
 
 keyboardJS.bind('a', function(e) {
    synth.set("mySynth.mul.gate", 1);
@@ -136,15 +185,24 @@ keyboardJS.bind('g', function(e) {
     </head>
     <body>
 
-        <p>Press the letters a and b to trigger notes, the letter d to modulate them, and the letter f to (apparently) gate everything off
+       <!-- <p>Press the letters a and b to trigger notes, the letter d to modulate them, and the letter f to (apparently) gate everything off
         <!--<input type="button" id="play" value="play" /> 
         <input type="button" id="stop" value="stop" />--> 
         <!-- <input type="button" id="Tri" value="Tri" /> -->
 
+        <input type="button" id="Tri" value="Tri" />
+
         <span id="amt"></span>
         <p>frequency</p>
         <div id="sliderCtrl2"></div>
-        <p>modulator frequency</p>
+   <p>modulator frequency</p>
         <div id="sliderCtrl3"></div>
+        <p>LFO</p>
+        <div id="sliderCtrl4"></div>
+
+
+       <!-- <input type="text" value="75" class="dial"> -->
+
+
     </body>
 </html>
