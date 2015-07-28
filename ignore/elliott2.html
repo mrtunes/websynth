@@ -7,8 +7,8 @@
         <script src="dist/flocking-all.js"></script>
          <script src="dist/jquery.knob.min.js"></script>
    
-        <script src="ellsynth.js"></script> 
-     
+        <!-- <script src="ellsynth.js"></script> i am experimenting with a different synth -->
+        <script src="ellsynth2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <style>
             .heavytext{
@@ -33,8 +33,9 @@
                     step: 1,
                     slide: function(evt, elem) {
                         $("#amt").text(elem.value);
-                        synth.set("mySynth.mul.gate", 1);
+                        //synth.set("mySynth.mul.gate", 1);
                         synth.set("mySynth.freq", elem.value);
+                        //synth.set("oscil.freq", elem.value);
                     },
                     start: function(evt, elem) {
 
@@ -44,7 +45,7 @@
                     },
                     stop: function(evt, elem) {
                         //synth.pause();
-                          synth.set("mySynth.mul.gate", 0);
+                          //synth.set("mySynth.mul.gate", 0);
                         $("#amt").removeClass("heavytext")
                     }
                 });

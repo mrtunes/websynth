@@ -10,8 +10,16 @@ var synth = flock.synth({
                 attack: 0.05,
                 sustain: .5,
                 release: 0.5
+                    
             }
-        
+
+     /* mul: {
+    id: "modulator",
+    ugen: "flock.ugen.sinOsc",
+    freq: 0,
+    mul: 0.25      
+        }*/
+
     },
     addToEnvironment: false // This tells Flocking not to start playing this synth right away.
 });
