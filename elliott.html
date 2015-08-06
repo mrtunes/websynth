@@ -18,6 +18,13 @@
             #sliderCtrl2, #sliderCtrl3 {
                 width: 360;
             }
+
+         
+           #smile canvas {max-height:200px;  float:left; overflow:hidden;}
+            #eyes{position:absolute; top:40; left:30}
+                 #leftEye{
+                  margin-left:20px; margin-right:60px;}
+
         </style>
 
         <script>
@@ -115,11 +122,46 @@
 
                });
 
+/*$( "#leftEye" ).click(function() {
+  synth.set("mySynth.mul.gate", 1);
+  synth.set("mySynth.mul.freq", 400);
+},
+}); */
+    
+   
+
              
 
         </script>
 
+        <script>
+$( "#leftEye" ).click(function() {
+alert("hello world");
 
+}
+        </script>
+
+
+<script>
+    $(function() {
+        $(".dial").knob({
+    'min':100,
+    'max':300, 
+    'angleOffset':90,
+    'angleArc':180,
+    'displayInput':false,
+    //'rotation':acw,
+
+     'change' : function (v) { synth.set("mySynth.mul.gate", 1);
+                        synth.set("mySynth.freq", v);
+                        console.log },
+
+      'release' : function (v) { synth.set("mySynth.mul.gate", 0);}                   
+
+    });
+
+        });
+</script>
 
           <script> 
 //playing around with keyboard bindings 
@@ -183,11 +225,11 @@ keyboardJS.bind('g', function(e) {
     <body>
 
        <!-- <p>Press the letters a and b to trigger notes, the letter d to modulate them, and the letter f to (apparently) gate everything off
-        <!--<input type="button" id="play" value="play" /> 
+        <!-- <input type="button" id="play" value="play" /> 
         <input type="button" id="stop" value="stop" />--> 
         <!-- <input type="button" id="Tri" value="Tri" /> -->
 
-        <input type="button" id="Tri" value="Tri" />
+       <!-- <input type="button" id="Tri" value="Tri" />
 
         <span id="amt"></span>
         <p>frequency</p>
@@ -195,8 +237,18 @@ keyboardJS.bind('g', function(e) {
    <p>modulator frequency</p>
         <div id="sliderCtrl3"></div>
         <p>LFO</p>
-        <div id="sliderCtrl4"></div>
+        <div id="sliderCtrl4"></div>-->
+     
+<div id="face">
+     <div id="eyes">
+      <button type="button" id="leftEye" />1</button>
+       <button type="button" id="rightEye" />2</button>
+     </div>
 
+<div id="smile">
+<input type="text" value="75" class="dial">
+</div>
+</div>
 
        <!-- <input type="text" value="75" class="dial"> -->
 
