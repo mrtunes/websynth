@@ -33,7 +33,7 @@
 
 
                  synth.play();
-                $("#sliderCtrl2").slider({
+               /* $("#sliderCtrl2").slider({
                     value: 400,
                     min: 0,
                     max: 2000,
@@ -100,7 +100,24 @@
                           synth.set("mySynth.mul.gate", 0);
                         //$("#amt").removeClass("heavytext")
                     }
-                });
+                }); */
+
+
+             $("#leftEye").click(function() {
+ synth.set("mySynth.mul.gate", 1);
+ synth.set("mySynth.freq", 440);
+
+
+});    
+
+
+
+
+       $("#rightEye").click(function() {
+ synth.set("mySynth.mul.gate", 1);
+ synth.set("mySynth.freq", 540);
+
+});         
 
              $( "#Tri" ).click(function() {
   synth.set("mySynth", {
@@ -122,11 +139,7 @@
 
                });
 
-/*$( "#leftEye" ).click(function() {
-  synth.set("mySynth.mul.gate", 1);
-  synth.set("mySynth.mul.freq", 400);
-},
-}); */
+
     
    
 
@@ -134,12 +147,6 @@
 
         </script>
 
-        <script>
-$( "#leftEye" ).click(function() {
-alert("hello world");
-
-}
-        </script>
 
 
 <script>
